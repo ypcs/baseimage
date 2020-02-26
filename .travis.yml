@@ -3,14 +3,13 @@ language: bash
 stage: build artifacts
 name: Build image for ${DISTRO}/${RELEASE}
 env:
-  - TARGET=sid
-  - TARGET=bullseye
-  - TARGET=buster
-  - TARGET=bionic
-  - TARGET=eoan
+  - DISTRO=debian
+    RELEASE=sid
+  - DISTRO=ubuntu
+    RELEASE=bionic
 install:
   - sudo apt update
   - sudo apt install --assume-yes debootstrap make debian-archive-keyring ubuntu-keyring rsync
 script:
-  - sudo make "${TARGET}"
+  - sudo bash build.sh "${DISTRO}" "${RELEASE}"
 
