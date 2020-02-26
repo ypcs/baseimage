@@ -1,0 +1,9 @@
+---
+language: bash
+stage: build artifacts
+name: xxx
+install:
+  - sudo apt install debootstrap make --assume-yes
+script:
+  - make all
+
