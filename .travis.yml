@@ -20,6 +20,6 @@ install:
   - sudo apt install debootstrap/sid
   - sudo apt install --assume-yes make debian-archive-keyring ubuntu-keyring rsync
 script:
-  - ls /usr/share/debootstrap/scripts/
+  - ls -lha /usr/share/debootstrap/scripts/
   - sudo bash build.sh "${DISTRO}" "${RELEASE}"
 
