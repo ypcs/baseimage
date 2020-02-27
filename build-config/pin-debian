@@ -1,0 +1,8 @@
+Package: debootstrap
+Pin: release o=Debian
+Pin-Priority: 1100
+
+Package: *
+Pin: release o=Debian
+Pin-Priority: 90
+
