@@ -9,7 +9,7 @@ env:
 before_install:
   - sudo apt-get update
   - sudo apt-get install debian-archive-keyring
-  - echo -e "Package: debootstrap\nPin: release o=Debian\nPin-Priority: 1000\n\nPackage: *\nPin: release o=Debian\nPin-Priority: 90" |sudo tee /etc/apt/preferences.d/limit-debian
+  - echo -e 'Package: debootstrap\nPin: release o=Debian\nPin-Priority: 1000\n\nPackage: *\nPin: release o=Debian\nPin-Priority: 90' |sudo tee /etc/apt/preferences.d/limit-debian
   - echo 'deb http://deb.debian.org/debian sid main' |sudo tee /etc/apt/sources.list.d/debian.list
   - sudo apt-get update
 install:
