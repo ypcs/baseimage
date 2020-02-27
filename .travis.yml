@@ -1,9 +1,9 @@
 ---
 env:
-  - DISTRO=debian
-    RELEASE=sid
-  - DISTRO=ubuntu
-    RELEASE=bionic
+  - DISTRO: debian
+    RELEASE: sid
+  - DISTRO: ubuntu
+    RELEASE: bionic
 
 
 #
