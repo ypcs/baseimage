@@ -24,5 +24,5 @@ jobs:
       install:
         - sudo apt-get install --assume-yes shellcheck
       script:
-        - find . -type f -name "*.sh" -print0 |xargs -0 -n1 shellcheck
+        - find . -type f -name "*.sh" -print0 |xargs -0 -n1 shellcheck --shell=sh
 
