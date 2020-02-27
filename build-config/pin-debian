@@ -1,4 +1,4 @@
-Package: debootstrap
+Package: debootstrap, debian-archive-keyring
 Pin: release o=Debian
 Pin-Priority: 1100
 
