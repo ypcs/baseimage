@@ -21,5 +21,5 @@ install:
   - sudo apt install --assume-yes make debian-archive-keyring ubuntu-keyring rsync
 script:
   - ls -lha /usr/share/debootstrap/scripts/
-  - sudo bash build.sh "${DISTRO}" "${RELEASE}"
+  - sudo bash build.sh "$(echo "${DISTRO}" |tr -d '[:space:]')" "$(echo "${RELEASE}" |tr -d '[:space:]')"
 
