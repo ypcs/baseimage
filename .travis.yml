@@ -1,7 +1,6 @@
 ---
 language: bash
 stage: build artifacts
-name: Build image for ${DISTRO}/${RELEASE}
 env:
   - DISTRO=debian
     RELEASE=sid
