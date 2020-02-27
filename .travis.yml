@@ -1,14 +1,14 @@
 ---
+env:
+  - DISTRO=debian
+    RELEASE=sid
+  - DISTRO=ubuntu
+    RELEASE=bionic
 
 jobs:
   include:
     - language: bash
       stage: build
-      env:
-        - DISTRO=debian
-          RELEASE=sid
-        - DISTRO=ubuntu
-          RELEASE=bionic
       install:
         - sudo apt update
         - sudo apt install --assume-yes make debootstrap debian-archive-keyring ubuntu-keyring rsync
