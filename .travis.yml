@@ -17,7 +17,8 @@ before_install:
   - sudo apt-get update
 install:
   - sudo apt update
-  - sudo apt install --assume-yes debootstrap make debian-archive-keyring ubuntu-keyring rsync
+  - sudo apt install debootstrap/sid
+  - sudo apt install --assume-yes make debian-archive-keyring ubuntu-keyring rsync
 script:
   - ls /usr/share/debootstrap/scripts/
   - sudo bash build.sh "${DISTRO}" "${RELEASE}"
