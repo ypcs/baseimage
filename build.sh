@@ -18,6 +18,8 @@ in
     ;;
 esac
 
+echo "I: Building ${DISTRO}/${RELEASE} using '${MIRROR}' as mirror."
+
 TARGET="chroot-${RELEASE}"
 
 /usr/sbin/debootstrap \
