@@ -25,7 +25,8 @@ TARGET="chroot-${RELEASE}"
     --force-check-gpg \
     "${RELEASE}" \
     "${TARGET}" \
-    "${MIRROR}"
+    "${MIRROR}" \
+    "/usr/share/debootstrap/scripts/${RELEASE}"
 
 rsync --chown=root:root -avh rootfs/* "${TARGET}/"
 
