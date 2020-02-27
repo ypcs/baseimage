@@ -22,6 +22,7 @@ TARGET="chroot-${RELEASE}"
 
 /usr/sbin/debootstrap \
     --variant=minbase \
+    --force-check-gpg \
     "${RELEASE}" \
     "${TARGET}" \
     "${MIRROR}"
