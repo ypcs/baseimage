@@ -5,18 +5,6 @@ env:
   - DISTRO: ubuntu
     RELEASE: bionic
 
-
-#
-# Lint shell scripts
-#
-- language: bash
-  stage: lint
-  install:
-    - sudo apt-get install --assume-yes shellcheck
-  script:
-    - find . -type f -name "*.sh" -print0 |xargs -0 -n1 shellcheck --shell=sh
-
-
 jobs:
   include:
     - language: bash
@@ -28,4 +16,13 @@ jobs:
         - ls -lha /usr/share/debootstrap/scripts/
         - sudo bash build.sh "$(echo "${DISTRO}" |tr -d '[:space:]')" "$(echo "${RELEASE}" |tr -d '[:space:]')"
 
+    #
+    # Lint shell scripts
+    #
+    - language: bash
+      stage: lint
+      install:
+        - sudo apt-get install --assume-yes shellcheck
+      script:
+        - find . -type f -name "*.sh" -print0 |xargs -0 -n1 shellcheck --shell=sh
 
