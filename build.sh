@@ -21,7 +21,6 @@ esac
 TARGET="chroot-${RELEASE}"
 
 /usr/sbin/debootstrap \
-    --usrmerge \
     --variant=minbase \
     "${RELEASE}" \
     "${TARGET}" \
