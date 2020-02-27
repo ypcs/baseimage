@@ -6,18 +6,6 @@ env:
     RELEASE=sid
   - DISTRO=ubuntu
     RELEASE=bionic
-  - DISTRO=debian
-    RELEASE=bullseye
-  - DISTRO=debian
-    RELEASE=buster
-  - DISTRO=debian
-    RELEASE=stretch
-  - DISTRO=debian
-    RELEASE=jessie
-  - DISTRO=ubuntu
-    RELEASE=eoan
-  - DISTRO=ubuntu
-    RELEASE=focal
 before_install:
   - sudo apt-get update
   - sudo apt-get install debian-archive-keyring
