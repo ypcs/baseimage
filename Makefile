@@ -13,6 +13,9 @@ TAR = /bin/tar
 
 DOCKER ?= docker
 
+noop:
+	@echo "FIXME"
+
 all: clean $(DEBIAN_SUITES) $(UBUNTU_SUITES)
 
 push:
