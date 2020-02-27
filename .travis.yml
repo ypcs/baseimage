@@ -6,6 +6,18 @@ env:
     RELEASE=sid
   - DISTRO=ubuntu
     RELEASE=bionic
+  - DISTRO=debian
+    RELEASE=bullseye
+  - DISTRO=debian
+    RELEASE=buster
+  - DISTRO=debian
+    RELEASE=stretch
+  - DISTRO=debian
+    RELEASE=jessie
+  - DISTRO=ubuntu
+    RELEASE=eoan
+  - DISTRO=ubuntu
+    RELEASE=focal
 install:
   - sudo apt update
   - sudo apt install --assume-yes debootstrap make debian-archive-keyring ubuntu-keyring rsync
