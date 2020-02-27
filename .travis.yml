@@ -9,19 +9,9 @@ jobs:
           RELEASE=sid
         - DISTRO=ubuntu
           RELEASE=bionic
-      before_install:
-        - sudo apt-get install debian-archive-keyring --assume-yes
-        - sudo cp build-config/pin-debian /etc/apt/preferences.d/
-        - sudo cp build-config/debian-jessie.list /etc/apt/sources.list.d/debian.list
-        - sudo apt-get install debian-archive-keyring --assume-yes
-        - sudo apt-get update
-        - sudo apt-get install debian-archive-keyring --assume-yes
-        - sudo cp build-config/debian-sid.list /etc/apt/sources.list.d/debian.list
-        - sudo apt-get update
       install:
         - sudo apt update
-        - sudo apt install debootstrap/sid
-        - sudo apt install --assume-yes make debian-archive-keyring ubuntu-keyring rsync
+        - sudo apt install --assume-yes make debootstrap debian-archive-keyring ubuntu-keyring rsync
       script:
         - ls -lha /usr/share/debootstrap/scripts/
         - sudo bash build.sh "$(echo "${DISTRO}" |tr -d '[:space:]')" "$(echo "${RELEASE}" |tr -d '[:space:]')"
