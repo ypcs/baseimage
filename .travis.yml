@@ -7,14 +7,12 @@ env:
   - DISTRO=ubuntu
     RELEASE=bionic
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install debian-archive-keyring
-  - gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --list-keys
   - sudo cp build-config/pin-debian /etc/apt/preferences.d/
-  - sudo cp build-config/debian-jessie.list /etc/apt/sources.list.d/
+  - sudo gpg --no-default-keyring --keyring /usr/share/keyrings/ypcs-baseimage.gpg --import build-config/archive-key-10.asc
+  - sudo cp build-config/debian-custom.list /etc/apt/sources.list.d/debian.list
   - sudo apt-get update
-  - sudo apt-get install debian-archive-keyring/jessie
-  - sudo cp build-config/debian-sid.list /etc/apt/sources.list.d/
+  - sudo apt-get install debian-archive-keyring --assume-yes
+  - sudo cp build-config/debian-sid.list /etc/apt/sources.list.d/debian.list
   - sudo apt-get update
 install:
   - sudo apt update
