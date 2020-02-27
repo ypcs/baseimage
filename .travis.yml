@@ -9,9 +9,8 @@ env:
 before_install:
   - sudo apt-get install debian-archive-keyring --assume-yes
   - sudo cp build-config/pin-debian /etc/apt/preferences.d/
-  - for key in build-config/*.asc ; do sudo gpg --no-default-keyring --keyring /usr/share/keyrings/ypcs-baseimage.gpg --import build-config/$key ; done
-  - sudo gpg --no-default-keyring --keyring /usr/share/keyrings/ypcs-baseimage.gpg 
-  - sudo cp build-config/debian-custom.list /etc/apt/sources.list.d/debian.list
+  - sudo cp build-config/debian-jessie.list /etc/apt/sources.list.d/debian.list
+  - sudo apt-get install debian-archive-keyring --assume-yes
   - sudo apt-get update
   - sudo apt-get install debian-archive-keyring --assume-yes
   - sudo cp build-config/debian-sid.list /etc/apt/sources.list.d/debian.list
