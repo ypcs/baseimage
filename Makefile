@@ -49,11 +49,13 @@ chroot-debian-%:
 	$(DEBOOTSTRAP) $(DEBOOTSTRAP_FLAGS) $* $@ $(DEBIAN_MIRROR)
 	rsync --chown=root:root -avh rootfs/* $@/
 	chroot $@ bash -c 'DEBIAN_MIRROR="$(DEBIAN_MIRROR)" DISTRIBUTION="debian" CODENAME="$*" /bin/bash /usr/lib/baseimage-helpers/build/execute'
+	chroot $@ find / -type f sha256sum "{}" \; |tee $@/sha256sums
 
 chroot-ubuntu-%:
 	$(DEBOOTSTRAP) $(DEBOOTSTRAP_FLAGS) $* $@ $(UBUNTU_MIRROR)
 	rsync --chown=root:root -avh rootfs/* $@/
 	chroot $@ bash -c 'UBUNTU_MIRROR="$(UBUNTU_MIRROR)" DISTRIBUTION="ubuntu" CODENAME="$*" /bin/bash /usr/lib/baseimage-helpers/build/execute'
+	chroot $@ find / -type f sha256sum "{}" \; |tee $@/sha256sums
 
 images:
 	$(MAKE) -C $@
