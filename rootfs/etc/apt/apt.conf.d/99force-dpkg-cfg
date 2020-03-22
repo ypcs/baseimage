@@ -1,0 +1,6 @@
+# Force dpkg to use default values and old config, don't prompt as
+# it makes Docker to fail.
+Dpkg::Options {
+   "--force-confdef";
+   "--force-confold";
+}
