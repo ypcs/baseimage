@@ -1,0 +1,5 @@
+Remove netdev rules
+
+ - sudo mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.old
+
+no other changes needed (?)

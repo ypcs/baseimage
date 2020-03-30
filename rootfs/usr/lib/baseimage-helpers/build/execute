@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+[ -f "/envfile" ] && . /envfile
+
 SRCDIR="/usr/lib/baseimage-helpers/build"
 TEMPDIR="$(mktemp --tmpdir --directory build-scripts.XXXXXX)"
 
@@ -30,3 +32,4 @@ run-parts \
 
 rm -rf "${TEMPDIR}"
 rm -rf /usr/lib/baseimage-helpers/build
+rm -f /envfile
