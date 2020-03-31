@@ -83,7 +83,6 @@ echo "I: Create debootstrap tarball..."
     --make-tarball="${TARBALL}" \
     --variant=minbase \
     --force-check-gpg \
-    --cache-dir="${CACHE_DIR}" \
     "${CODENAME}" \
     "${TARGET}.tarball" \
     "${MIRROR}" \
@@ -94,7 +93,6 @@ echo "I: Create actual chroot directory..."
     --unpack-tarball="${TARBALL}" \
     --variant=minbase \
     --force-check-gpg \
-    --cache-dir="${CACHE_DIR}" \
     "${CODENAME}" \
     "${TARGET}" \
     "${MIRROR}" \
