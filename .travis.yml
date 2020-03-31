@@ -2,9 +2,9 @@
 language: bash
 env:
   - DISTRO: debian
-    RELEASE: sid
+    CODENAME: sid
   - DISTRO: ubuntu
-    RELEASE: bionic
+    CODENAME: bionic
 
 jobs:
   include:
@@ -15,7 +15,7 @@ jobs:
         - sudo apt install --assume-yes make debootstrap debian-archive-keyring ubuntu-keyring rsync
       script:
         - ls -lha /usr/share/debootstrap/scripts/
-        - sudo bash build.sh "$(echo "${DISTRO}" |tr -d '[:space:]')" "$(echo "${RELEASE}" |tr -d '[:space:]')"
+        - sudo bash build.sh "${DISTRO}" "${RELEASE}"
 
     #
     # Lint shell scripts
