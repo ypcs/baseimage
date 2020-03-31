@@ -95,7 +95,6 @@ echo "I: Create actual chroot directory..."
     --unpack-tarball="${TARBALL}" \
     --variant=minbase \
     --force-check-gpg \
-    --log-extra-deps \
     --cache-dir="${CACHE_DIR}" \
     "${CODENAME}" \
     "${TARGET}" \
