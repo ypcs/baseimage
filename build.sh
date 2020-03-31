@@ -103,6 +103,7 @@ echo "I: Create actual chroot directory..."
 
 cat > "${TARGET}/envfile" << EOF
 # Environment configuration for baseimage
+export BUILD_ID="${BUILD_ID}"
 export MIRROR="${MIRROR}"
 export DISTRIBUTION="${DISTRIBUTION}"
 export CODENAME="${CODENAME}"
