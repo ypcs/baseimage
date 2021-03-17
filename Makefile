@@ -6,53 +6,43 @@ DEBIAN_MIRROR ?= http://deb.debian.org/debian
 UBUNTU_SUITES = bionic xenial eoan focal groovy hirsute
 UBUNTU_MIRROR ?= http://archive.ubuntu.com/ubuntu
 
-SUDO = /usr/bin/sudo
-DEBOOTSTRAP = /usr/sbin/debootstrap
-DEBOOTSTRAP_FLAGS = --variant=minbase
-TAR = /bin/tar
+SUITES = $(DEBIAN_SUITES) $(UBUNTU_SUITES)
 
-DOCKER ?= docker
+ARCH ?= amd64
 
-all: clean $(DEBIAN_SUITES) $(UBUNTU_SUITES)
-
-push:
-	$(DOCKER) push $(NAMESPACE)/debian
-	$(DOCKER) push $(NAMESPACE)/ubuntu
+all: $(SUITES)
 
 clean:
-	rm -rf *.tar *.tar.gz chroot-*
+	# %.tar
+	rm -f *.tar *.tar.log
+	# %.hooks
+	rm -rf *.hooks
 
-$(DEBIAN_SUITES): % : debian-%.tar import-debian-%
+$(SUITES): %: %.$(ARCH).tar %.$(ARCH).raw.mbr %.$(ARCH).raw.gpt
 
-$(UBUNTU_SUITES): % : ubuntu-%.tar import-ubuntu-%
+%.sources:
 
-%.tar: chroot-%
-	$(TAR) -C $< -c . -f $@
-	./scripts/lxc-metadata.sh $(patsubst %.tar,%,$@)
+suites/%/hooks:
+	mkdir -p $@
 
-import-debian-%: debian-%.tar
-	$(DOCKER) import - "$(NAMESPACE)/debian:$*" < $<
+%.hooks/ok:
+	# FIXME: copy all hooks for this *release*/suite
+	cp -a hooks $(dir $@)
+	cp -a suites/$(basename $(dir $@))/hooks/* $(dir $@) || true
+	touch $@
 
-import-ubuntu-%: ubuntu-%.tar
-	$(DOCKER) import - "$(NAMESPACE)/ubuntu:$*" < $<
-
-push-debian-%: import-debian-%
-	$(DOCKER) push "$(NAMESPACE)/debian:$*"
-
-push-ubuntu-%: import-ubuntu-%
-	$(DOCKER) push "$(NAMESPACE)/ubuntu:$*"
-
-chroot-debian-%:
-	$(DEBOOTSTRAP) $(DEBOOTSTRAP_FLAGS) $* $@ $(DEBIAN_MIRROR)
-	rsync --chown=root:root -avh rootfs/* $@/
-	chroot $@ bash -c 'DEBIAN_MIRROR="$(DEBIAN_MIRROR)" DISTRIBUTION="debian" CODENAME="$*" /bin/bash /usr/lib/baseimage-helpers/build/execute'
-
-chroot-ubuntu-%:
-	$(DEBOOTSTRAP) $(DEBOOTSTRAP_FLAGS) $* $@ $(UBUNTU_MIRROR)
-	rsync --chown=root:root -avh rootfs/* $@/
-	chroot $@ bash -c 'UBUNTU_MIRROR="$(UBUNTU_MIRROR)" DISTRIBUTION="ubuntu" CODENAME="$*" /bin/bash /usr/lib/baseimage-helpers/build/execute'
-
-images:
-	$(MAKE) -C $@
-
-.PHONY: images
+%.tar: $(basename %).hooks/ok
+	@echo "Build base image using $(shell mmdebstrap --version)..."
+	@echo " Suite: $(basename $(basename $@))"
+	@echo " Target file: $@"
+	@echo " Architecture: $(ARCH)"
+	mmdebstrap \
+		--architecture "$(ARCH)" \
+		--format tar \
+		--hook-directory=$(basename $@).hooks \
+		--logfile=$@.log \
+		--mode=fakechroot \
+		--variant=minbase \
+		--verbose \
+		"$(basename $(basename $@))" \
+		"$@"
