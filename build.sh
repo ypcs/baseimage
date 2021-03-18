@@ -80,7 +80,7 @@ do
                 tar --directory="${TARGET_TMP}" -cf "${TARGET_PATH}.config.tar" .
 
                 # Construct the build command
-                COMMAND="/usr/bin/mmdebstrap --architecture='${ARCH}' --format=tar --hook-directory='${TARGET_TMP}/hooks' --logfile='${BUILD_DIR}/${TARGET}.log' --variant=minbase --verbose '${RELEASE}' '${TARGET_FILE}' && tar --directory '${TARGET_TMP}/rootfs' -rf '${TARGET_FILE}' ."
+                COMMAND="/usr/bin/mmdebstrap --architecture='${ARCH}' --format=tar --hook-directory='${TARGET_TMP}/hooks' --logfile='${BUILD_DIR}/${TARGET}.log' --mode=fakechroot --variant=minbase --verbose '${RELEASE}' '${TARGET_FILE}' && tar --directory '${TARGET_TMP}/rootfs' -rf '${TARGET_FILE}' ."
 
                 # Keep full command to make build repeatable
                 echo "# Build with ${MMDEBSTRAP_VERSION}" > "${TARGET_PATH}.cmdline"
