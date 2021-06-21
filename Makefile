@@ -20,7 +20,7 @@ clean:
 	# %.hooks
 	rm -rf *.hooks
 
-$(SUITES): %: %.$(ARCH).tar %.$(ARCH).raw.mbr %.$(ARCH).raw.gpt
+$(SUITES): %: %.$(ARCH).tar
 
 %.sources:
 
