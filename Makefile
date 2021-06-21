@@ -43,7 +43,6 @@ suites/%/hooks:
 		--format tar \
 		--hook-directory=$(basename $@).hooks \
 		--logfile=$@.log \
-		--mode=fakechroot \
 		--variant=minbase \
 		--verbose \
 		"$(basename $(basename $@))" \
