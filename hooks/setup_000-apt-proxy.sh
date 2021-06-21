@@ -3,6 +3,9 @@ set -e
 
 mkdir -p "$1/etc/apt/apt.conf.d"
 
+if [ -n "${APT_PROXY}" ]
+then
 cat > "$1/etc/apt/apt.conf.d/99proxy" << EOF
-Acquire::HTTP::Proxy "http://127.0.0.1:3142";
+Acquire::HTTP::Proxy "${APT_PROXY}";
 EOF
+fi

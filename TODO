@@ -1,0 +1,40 @@
+Initial issue:
+ - build reproducible and minimal OS images for multiple purposes
+  - base image for installing new host
+  - docker base image
+  - vagrant base images
+  - virtual machine base images
+  - base images for different cloud providers
+ 
+ - support multiple distributions and releases
+  - Debian: 8+
+  - Ubuntu: 16.04+
+  - ...
+ - depend on other tools as much as possible, just provide configuration in
+   easy format
+ 
+ - goal: we can easily compare all images to Debian/Ubuntu archive and ensure that
+   everything originates from upstream repository
+ - goal: make it possible to build different flavours from single source
+ - goal: cache as much as possible and reuse single source => minimize network usage
+
+- instead of signing eg. *.xz files, sign *.tar to make signatures independed from compression algo
+- use guestfish to modify/create disk image
+
+
+
+- different architectures, eg. armhf + amd64 + i386
+ - different formats: chroot only, image (bios), image (efi), image (secure boot)
+ - different platforms: baremetal, docker, virtualbox, qemu, aws-ec2, upcloud, ...
+
+- add helper like "docker-dev" that executes apt-setup and other essential commands to prepopulate cache, maybe install some helper tools like nano
+
+
+
+build/${distribution}_${release}_${architecture}_${platform}.ext
+
+<https://unix.stackexchange.com/questions/531480/what-does-swapaccount-1-in-grub-cmdline-linux-default-do>
+swapaccount=1
+
+
+TEST IMAGES

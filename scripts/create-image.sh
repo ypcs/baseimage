@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+echo "FIXME!"
+
+exit 0
+
 if [ "$(id -u)" != "0" ]
 then
     echo "run as root!"
