@@ -10,7 +10,9 @@ SUITES = $(DEBIAN_SUITES) $(UBUNTU_SUITES)
 
 ARCH ?= amd64
 
-all: $(SUITES)
+all: clean build
+
+build: $(SUITES)
 
 clean:
 	# %.tar
