@@ -1,9 +1,9 @@
 NAMESPACE = ypcs
 
-DEBIAN_SUITES = stretch buster sid bullseye
+DEBIAN_SUITES = buster sid bullseye
 DEBIAN_MIRROR ?= http://deb.debian.org/debian
 
-UBUNTU_SUITES = bionic xenial eoan focal groovy hirsute
+UBUNTU_SUITES = xenial bionic focal hirsute
 UBUNTU_MIRROR ?= http://archive.ubuntu.com/ubuntu
 
 SUITES = $(DEBIAN_SUITES) $(UBUNTU_SUITES)
