@@ -16,7 +16,12 @@ export TARGET
 
 for script in ${SCRIPTS}
 do
-    sh "${script}"
+    if [ -x "${script}" ]
+    then
+        sh "${script}"
+    else
+        echo "I: Skipping non-executable script '${script}'..."
+    fi
 done
 
 echo "Done!"
