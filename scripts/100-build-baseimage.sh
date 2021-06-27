@@ -2,6 +2,15 @@
 set -e
 set -x
 
+[ -z "${TARGET}" ] && echo "Variable \$TARGET not set!" >&2 && exit 1
+[ -z "${SUITE}" ] && echo "Variable \$SUITE not set!" >&2 && exit 1
+
+if [ ! -x /usr/bin/mmdebstrap ]
+then
+    echo "mmdebstrap binary not found!" >&2
+    exit 1
+fi
+
 echo "I: Build base image with $(/usr/bin/mmdebstrap --version)..."
 /usr/bin/mmdebstrap \
     --architecture="${ARCH:-amd64}" \
