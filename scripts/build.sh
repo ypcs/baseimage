@@ -3,7 +3,10 @@ set -e
 set -x
 
 SUITE="${1:-bullseye}"
-TARGET="build"
+TARGET="$(mktemp --directory build.XXXXXX)"
+
+echo "Building images for '${SUITE}'."
+echo "Using '${TARGET}' as target directory."
 
 mkdir -p "${TARGET}"
 
