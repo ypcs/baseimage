@@ -12,7 +12,7 @@ mkdir -p "${TARGET}"
 
 BASEDIR="$(dirname "$0")"
 
-SCRIPTS="$(find "${BASEDIR}" -type f \! -name build.sh -print)"
+SCRIPTS="$(find "${BASEDIR}" -type f \! -name build.sh -print |uniq |sort -n)"
 
 export SUITE
 export TARGET
