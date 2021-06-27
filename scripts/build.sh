@@ -11,6 +11,21 @@ echo "Building images for '${SUITE}'."
 echo "Using '${TARGET}' as target directory."
 echo "Using '${TEMPDIR}' as temporary directory."
 
+#
+# APT proxy
+#
+# Configure APT proxying if one of APT_PROXY, http_proxy or HTTP_PROXY variable
+# is set. This is the order of preference.
+#
+APT_PROXY="${APT_PROXY:-${http_proxy:-${HTTP_PROXY}}}"
+
+if [ -n "${APT_PROXY}" ]
+then
+    export APT_PROXY
+    echo "Use APT proxy: '${APT_PROXY}'"
+    # FIXME: override current hook setup if needed
+fi
+
 
 #
 # Setup hooks
@@ -29,20 +44,23 @@ else
     echo "W: No suite hooks directory."
 fi
 
-# Configure APT proxying if one of APT_PROXY, http_proxy or HTTP_PROXY variable
-# is set. This is the order of preference.
-APT_PROXY="${APT_PROXY:-${http_proxy:-${HTTP_PROXY}}}"
-
-if [ -n "${APT_PROXY}" ]
-then
-    export APT_PROXY
-    echo "Use APT proxy: '${APT_PROXY}'"
-    # FIXME: override current hook setup
-fi
 
 #
 # Setup rootfs
 #
+ROOTFSDIR="${TEMPDIR}/rootfs"
+mkdir -p "${ROOTFSDIR}"
+
+echo "I: Copy generic rootfs..."
+cp -a "${BASEDIR}/rootfs/"* "${ROOTFSDIR}/"
+
+SUITEROOTFSDIR="${BASEDIR}/suites/${SUITE}/rootfs"
+if [ -d "${SUITEROOTFSDIR}" ]
+then
+    cp -a "${SUITEROOTFSDIR}/"* "${ROOTFSDIR}/"
+else
+    echo "W: No suite rootfs directory."
+fi
 
 
 #
@@ -78,6 +96,10 @@ tar xvf \
     "${BASETARFILE}" \
     --to-command sha256sum |tee "${BASETARFILE}.sha256sums"
 
+#
+# Rootfs tar archive
+#
+tar --directory="${ROOTFSDIR}" --strip-components=1
 
 mkdir -p "${TARGET}"
 
