@@ -29,8 +29,6 @@ Initial issue:
 
 - add helper like "docker-dev" that executes apt-setup and other essential commands to prepopulate cache, maybe install some helper tools like nano
 
-
-
 build/${distribution}_${release}_${architecture}_${platform}.ext
 
 <https://unix.stackexchange.com/questions/531480/what-does-swapaccount-1-in-grub-cmdline-linux-default-do>
