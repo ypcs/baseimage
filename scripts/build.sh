@@ -35,9 +35,10 @@ APT_PROXY="${APT_PROXY:-${http_proxy:-${HTTP_PROXY}}}"
 
 if [ -n "${APT_PROXY}" ]
 then
-    echo "APT: '${APT_PROXY}'"
+    export APT_PROXY
+    echo "Use APT proxy: '${APT_PROXY}'"
+    # FIXME: override current hook setup
 fi
-exit 0
 
 #
 # Setup rootfs
