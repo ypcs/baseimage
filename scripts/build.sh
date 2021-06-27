@@ -99,7 +99,8 @@ tar xvf \
 #
 # Rootfs tar archive
 #
-tar --directory="${ROOTFSDIR}" --strip-components=1
+echo "I: Creating rootfs tar archive..."
+tar --directory="${ROOTFSDIR}" -c . -f "${TEMPDIR}/rootfs.tar"
 
 mkdir -p "${TARGET}"
 
