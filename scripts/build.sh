@@ -102,6 +102,12 @@ tar xvf \
 echo "I: Creating rootfs tar archive..."
 tar --directory="${ROOTFSDIR}" -c . -f "${TEMPDIR}/rootfs.tar"
 
+BASEORIG="$(echo "${BASETARFILE}" |sed -e 's/\.tar$/\.orig\.tar/g')"
+cp "${BASETARFILE}" "${BASEORIG}"
+
+echo "I: Append rootfs to base tar..."
+tar --concatenate --file="${BASETARFILE}" "${TEMPDIR}/rootfs.tar"
+
 mkdir -p "${TARGET}"
 
 
