@@ -62,7 +62,7 @@ echo "I: Build base image with $(/usr/bin/mmdebstrap --version)..."
 /usr/bin/mmdebstrap \
     --architecture="${ARCH:-amd64}" \
     --format=tar \
-    --hook-directory="${TARGET}/hooks" \
+    --hook-directory="${HOOKSDIR}" \
     --mode=fakechroot \
     --variant=minbase \
     --verbose \
@@ -75,8 +75,8 @@ echo "I: Build base image with $(/usr/bin/mmdebstrap --version)..."
 #
 
 tar xvf \
-    "${TARGET}/${SUITE}.base.tar" \
-    --to-command sha256sum |tee "${TARGET}/${SUITE}.base.tar.sha256sums"
+    "${BASETARFILE}" \
+    --to-command sha256sum |tee "${BASETARFILE}.sha256sums"
 
 
 mkdir -p "${TARGET}"

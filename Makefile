@@ -13,7 +13,7 @@ SUITES = $(DEBIAN_SUITES) $(UBUNTU_SUITES)
 all: $(SUITES)
 
 clean:
-	rm -rf tmp.* build*
+	rm -rf tmp.* build
 
 $(SUITES): %:
 	sh build.sh "$@"
