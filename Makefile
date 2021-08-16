@@ -1,6 +1,6 @@
 NAMESPACE = ypcs
 
-DEBIAN_SUITES = stretch buster sid bullseye
+DEBIAN_SUITES = stretch buster bullseye sid bookworm
 DEBIAN_MIRROR ?= http://deb.debian.org/debian
 
 UBUNTU_SUITES = bionic xenial eoan focal groovy hirsute
