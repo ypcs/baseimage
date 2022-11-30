@@ -1,5 +1,6 @@
-chroot-*
 *~
 *.swp
 *.tar
-*.tar.gz
+
+*.sources.list
+*.rootfs.tar

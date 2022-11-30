@@ -1,0 +1,7 @@
+# Configuration for building images
+
+# Supported Debian suites
+DEBIAN_SUITES="sid bookworm bullseye buster"
+
+# Supported Ubuntu suites
+UBUNTU_SUITES="kinetic jammy focal bionic"
