@@ -33,6 +33,10 @@ in
 	in
 	    sid|unstable)
 	        ;;
+        trixie)
+                echo "deb ${DEBIAN_MIRROR}-security ${CODENAME}-security main" >> "${SOURCESLIST}"
+                echo "#deb-src ${DEBIAN_MIRROR}-security ${CODENAME}-security main" >> "${SOURCESLIST}"
+            ;;
 	    bullseye|bookworm|testing)
                 echo "deb ${DEBIAN_MIRROR} ${CODENAME}-updates main" >> "${SOURCESLIST}"
                 echo "deb ${DEBIAN_MIRROR} ${CODENAME}-updates main" >> "${SOURCESLIST}"
