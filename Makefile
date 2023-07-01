@@ -1,9 +1,9 @@
-NAMESPACE = ypcs
+NAMESPACE = docker.io/ypcs
 
-DEBIAN_SUITES = stretch buster bullseye sid bookworm
+DEBIAN_SUITES = buster bullseye sid bookworm
 DEBIAN_MIRROR ?= http://deb.debian.org/debian
 
-UBUNTU_SUITES = bionic xenial eoan focal groovy hirsute impish
+UBUNTU_SUITES = bionic xenial eoan focal groovy hirsute impish jammy kinetic lunar
 UBUNTU_MIRROR ?= http://archive.ubuntu.com/ubuntu
 
 SUDO = /usr/bin/sudo
