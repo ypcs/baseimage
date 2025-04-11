@@ -56,3 +56,4 @@ images:
 	$(MAKE) -C $@
 
 .PHONY: images
+.PRECIOUS: %.tar
